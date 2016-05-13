@@ -1,0 +1,70 @@
+$breakpoints: (
+  'xs': 'only screen and ( min-width: 480px)',
+  'sm': 'only screen and ( min-width: 768px)',
+  'md': 'only screen and ( min-width: 992px)',
+  'lg': 'only screen and ( min-width: 1200px)',
+) !default;
+@mixin respond-to($breakpoint){
+	$query:map-get($breakpoints,$breakpoint);
+	@if not $query {
+		@error "No value found for `#{$breakpoint}`. Please make sure it is defined in `$breakpoints` map.'"
+	}
+	@media #{if(type-of($query) == 'string',unquote($query),inspect($query))} {
+		@content
+	}
+}
+.elemnt{
+	color:red;
+	@include respond-to(sm){
+		color: tomato;
+	}
+}
+// map-function
+$colors: (
+  primary: #333,
+  secondary: #555,
+  brand: #ff0033
+);
+.logo {
+  color: map-get($colors, brand);
+}
+@for $i from 1 through 4 {
+	.box-#{$i} {
+		width:4rem*$i
+	}
+}
+@each $key,$value in $colors{
+	.item-#{$key} {
+		color :$value
+	}
+}
+//Breakpoints & Media Queries
+$breakpoints: (
+  xs: 32rem,
+  sm: 48rem,
+  md: 72rem,
+  lg: 96rem,
+  xl: 102rem,
+  xx: 120rem
+);
+@mixin break($size){
+	@media (min-width:map-get( $breakpoints, $size)){
+		@content
+	}
+}
+.el {
+  display: none;
+
+  @include break(sm) {
+    display: block;
+  }
+}
+$breakpoints: (phone: 320px, tablet: 768px, desktop: 1024px);
+/* Inclusive and exclusive operators for a finer control over the intervals */
+@include media(">phone", "<=tablet") {
+width: 50%;
+}
+/* Use ligatured operators if you fancy a slicker declaration */
+@include media("≥phone", "≤tablet") {
+line-height: 1.5;
+}

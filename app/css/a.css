@@ -1,0 +1,51 @@
+.elemnt {
+  color: red;
+}
+
+@media only screen and (min-width: 768px) {
+  .elemnt {
+    color: tomato;
+  }
+}
+
+.logo {
+  color: #ff0033;
+}
+
+.box-1 {
+  width: 4rem;
+}
+
+.box-2 {
+  width: 8rem;
+}
+
+.box-3 {
+  width: 12rem;
+}
+
+.box-4 {
+  width: 16rem;
+}
+
+.item-primary {
+  color: #333;
+}
+
+.item-secondary {
+  color: #555;
+}
+
+.item-brand {
+  color: #ff0033;
+}
+
+.el {
+  display: none;
+}
+
+@media (min-width: 48rem) {
+  .el {
+    display: block;
+  }
+}
